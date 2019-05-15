@@ -20,13 +20,13 @@
       "pagePath": "pages/index/index",
       "text": "Weather",
       "iconPath": "images/weather.png",
-      "selectedIconPath": "images/weather.png"
+      "selectedIconPath": "images/weather_select.png"
     },
     {
       "pagePath": "pages/wardrobe/wardrobe",
       "text": "Wardrobe",
       "iconPath": "images/wardrobe.png",
-      "selectedIconPath": "images/wardrobe.png"
+      "selectedIconPath": "images/wardrobe_select.png"
     }]
   },
   "permission": {
