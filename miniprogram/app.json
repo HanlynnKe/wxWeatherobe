@@ -1,6 +1,9 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/wardrobe/wardrobe",
+    "pages/fittingroom/room",
+    "pages/me/me"
   ],
   "window": {
     "backgroundColor": "#A7CAD3",
@@ -9,6 +12,20 @@
     "navigationBarTitleText": "Weatherobe",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "Weather",
+      "iconPath": "images/weather.png",
+      "selectedIconPath": "images/weather.png"
+    },
+    {
+      "pagePath": "pages/wardrobe/wardrobe",
+      "text": "Wardrobe",
+      "iconPath": "images/wardrobe.png",
+      "selectedIconPath": "images/wardrobe.png"
+    }]
   },
   "permission": {
     "scope.userLocation": {
