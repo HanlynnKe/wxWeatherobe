@@ -6,14 +6,16 @@
     "pages/me/me"
   ],
   "window": {
-    "backgroundColor": "#A7CAD3",
+    "backgroundColor": "#a7cad3",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#A7CAD3",
+    "navigationBarBackgroundColor": "#a7cad3",
     "navigationBarTitleText": "Weatherobe",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
   "tabBar": {
+    "color": "#747d8c",
+    "selectedColor": "#1e90ff",
     "list": [{
       "pagePath": "pages/index/index",
       "text": "Weather",
