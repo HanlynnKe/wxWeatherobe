@@ -27,6 +27,18 @@
       "text": "Wardrobe",
       "iconPath": "images/wardrobe.png",
       "selectedIconPath": "images/wardrobe_select.png"
+    },
+    {
+      "pagePath": "pages/fittingroom/room",
+      "text": "Fitting Room",
+      "iconPath": "images/room.png",
+      "selectedIconPath": "images/room_select.png"
+    },
+    {
+      "pagePath": "pages/me/me",
+      "text": "Me",
+      "iconPath": "images/me.png",
+      "selectedIconPath": "images/me_select.png"
     }]
   },
   "permission": {
