@@ -34,7 +34,7 @@ Page({
     }
     // 向后端发送请求
     wx.request({
-      url: 'http://www.fukutenki.xyz',
+      url: 'https://www.fukutenki.xyz',
       success(res) {
         // console.log(res)
         that.setData({
