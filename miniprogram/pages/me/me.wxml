@@ -1,12 +1,21 @@
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto" align="center">{{motto}}</text>
+<view class="container" style="background: url({{bgImgUrl}}); height:100%">
+  <view class="weui-panel weui-panel_access" style='margin-top: 200rpx;'>
+    <view class="weui-panel__hd">个人信息</view>
+    <view class="weui-panel__bd" style='margin-top: 20rpx;'>
+      <!-- <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{userInfo.avatarUrl}}" background-size="cover" style='margin-left:100rpx;'/>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title" style='color: #ffffff'>{{userInfo.nickName}}</view>
+          <view class="weui-media-box__desc">{{responce}}</view>
+      </view> -->
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+      <view class="usermotto">
+        <view class='usermotto-context'>{{responce}}</view>
+      </view>
+    </view>
   </view>
 </view>

@@ -42,7 +42,6 @@
                 <view class="home-text out-scroll-text">
                   <text class='scroll-text'>{{warmPrompt}}</text>
                 </view>
-
               </view>
             </view>
           </view>

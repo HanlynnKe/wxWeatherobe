@@ -6,10 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    motto: 'Hello World',
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    bgImgUrl: '../../images/cloud.jpg',
+    responce: ''
   },
 
   /**
@@ -18,19 +17,11 @@ Page({
   onLoad: function(options) {
     var that = this
     if (app.globalData.userInfo) {
+      // console.log(app.globalData.userInfo)
       that.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (that.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        that.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
     }
     // 向后端发送请求
     wx.request({
@@ -38,7 +29,7 @@ Page({
       success(res) {
         // console.log(res)
         that.setData({
-          motto: res.data
+          responce: res.data
         })
       }
     })
