@@ -1,1 +1,3 @@
-<h1>Wardrobe</h1>
+<view class="container" style="background: url({{bgImgUrl}}); height:100%">
+  <view class="head">Wardrobe</view>
+</view>

@@ -1,1 +1,3 @@
-<h1>Fitting Room</h1>
+<view class="container" style="background: url({{bgImgUrl}}); height:100%">
+  <view class="head">Fitting room</view>
+</view>
