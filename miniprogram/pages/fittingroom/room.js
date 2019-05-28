@@ -6,7 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bgImgUrl: '../../images/cloud.jpg'
+    bgImgUrl: '../../images/cloud.jpg',
+    
+    userTemp: 26,
+    tempAdvice: '感觉不错哦～',
+
+    countries: ["中国", "美国", "英国"],
+    countryIndex: 0,
+    accounts: ["微信号", "QQ", "Email"],
+    accountIndex: 0,
   },
 
   /**
