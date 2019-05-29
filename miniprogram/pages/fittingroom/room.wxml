@@ -18,26 +18,39 @@
     </view>
   </view>
   <view class="weui-cells__title">选择你的搭配</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__hd weui-cell__hd_in-select-after">
-                    <view class="weui-label">账号类别  </view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindAccountChange" value="{{accountIndex}}" range="{{accounts}}">
-                        <view class="weui-select">{{accounts[accountIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__hd weui-cell__hd_in-select-after">
-                    <view class="weui-label">国家/地区  </view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindCountryChange" value="{{countryIndex}}" range="{{countries}}">
-                        <view class="weui-select weui-select_in-select-after">{{countries[countryIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label" style="color: #ffffff;">上装外搭  </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindTops1Change" value="{{tops1Index}}" range="{{tops1}}">
+              <view class="weui-select" style="color: #ffffff;">{{tops1[tops1Index]}}</view>
+            </picker>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label" style="color: #ffffff;">上装内搭  </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindTops2Change" value="{{tops2Index}}" range="{{tops2Name}}">
+              <view class="weui-select" style="color: #ffffff;">{{tops2[tops2Index].name}}</view>
+            </picker>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label" style="color: #ffffff;">下装  </view>
         </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindBottomsChange" value="{{bottomsIndex}}" range="{{bottoms}}">
+            <view class="weui-select" style="color: #ffffff;">{{bottoms[bottomsIndex]}}</view>
+          </picker>
+        </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="default" bindtap="showTopTips" style="color: #747d8c">确定</button>
+  </view>
 </view>

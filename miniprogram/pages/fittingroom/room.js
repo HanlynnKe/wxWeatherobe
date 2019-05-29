@@ -10,11 +10,40 @@ Page({
     
     userTemp: 26,
     tempAdvice: '感觉不错哦～',
+    userSelect: {"tops":[], "bottoms":0},
 
-    countries: ["中国", "美国", "英国"],
-    countryIndex: 0,
-    accounts: ["微信号", "QQ", "Email"],
-    accountIndex: 0,
+    tops1: ["", "薄卫衣", "厚卫衣", "针织毛衣", "毛衣", 
+            "风衣", "棉服", "大衣", "薄款羽绒服", "厚款羽绒服"],
+    tops1Index: 0,
+    tops2Name: ["", "背心", "T恤", "保暖内衣", "衬衫"],
+    tops2Index: 0,
+    tops2: [
+      { name: "", value: 0 },
+      { name: "背心", value: 1 },
+      { name: "T恤", value: 2 },
+      { name: "保暖内衣", value: 5 },
+      { name: "衬衫", value: 6 },
+    ],
+    bottoms: ["", "短裤", "薄长裤", "厚长裤", "秋裤"],
+    bottomsIndex: 0,
+  },
+
+  bindTops1Change: function (e) {
+    this.setData({
+      tops1Index: e.detail.value
+    })
+  },
+  bindTops2Change: function (e) {
+    console.log(e.detail)
+    this.setData({
+      tops2Index: e.detail.value,
+    })
+    this.userSelect["tops"].push(e.detail.value)
+  },
+  bindBottomsChange: function (e) {
+    this.setData({
+      bottomsIndex: e.detail.value
+    })
   },
 
   /**
