@@ -44,7 +44,11 @@ Page({
     canvas_instance: null,
     apl: 0,
     rain_ins: null,
-    snow_ins: null
+    snow_ins: null,
+    userInfo: {
+      userName: '',
+      userID: ''
+    }
   },
 
   onLoad: function() {
@@ -133,7 +137,7 @@ Page({
     })
     getPosition(lat, lon, (res) => {
       if (res.statusCode == 200) {
-        console.log(res)
+        // console.log(res)
         let response = res.data.result
         let addr = response.formatted_addresses.recommend || response.rough
         this.setData({

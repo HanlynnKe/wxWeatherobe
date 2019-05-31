@@ -17,7 +17,7 @@ Page({
   onLoad: function(options) {
     var that = this
     if (app.globalData.userInfo) {
-      console.log(app.globalData.userInfo)
+      // console.log(app.globalData)
       that.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true

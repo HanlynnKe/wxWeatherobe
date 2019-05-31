@@ -34,7 +34,6 @@ Page({
     })
   },
   bindTops2Change: function (e) {
-    console.log(e.detail)
     this.setData({
       tops2Index: e.detail.value,
     })
@@ -44,6 +43,10 @@ Page({
     this.setData({
       bottomsIndex: e.detail.value
     })
+  },
+
+  bindConfirm: function(e) {
+    console.log(e)
   },
 
   /**
