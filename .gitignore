@@ -12,6 +12,3 @@ $RECYCLE.BIN/
 
 # Node.js
 node_modules/
-
-# Others
-config.js
