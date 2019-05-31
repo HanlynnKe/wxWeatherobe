@@ -10,11 +10,22 @@ Page({
     
     userTemp: 26,
     tempAdvice: '感觉不错哦～',
-    userSelect: {"tops":[], "bottoms":0},
 
-    tops1: ["", "薄卫衣", "厚卫衣", "针织毛衣", "毛衣", 
+    tops1Name: ["", "薄卫衣", "厚卫衣", "针织毛衣", "毛衣", 
             "风衣", "棉服", "大衣", "薄款羽绒服", "厚款羽绒服"],
     tops1Index: 0,
+    tops1: [
+      { name: "", value: 0 },
+      { name: "薄卫衣", value: 3 },
+      { name: "针织毛衣", value: 4 },
+      { name: "厚卫衣", value: 7 },
+      { name: "毛衣", value: 8 },
+      { name: "风衣", value: 9 },
+      { name: "棉服", value: 10 },
+      { name: "大衣", value: 11 },
+      { name: "薄款羽绒服", value: 12 },
+      { name: "厚款羽绒服", value: 13 },
+    ],
     tops2Name: ["", "背心", "T恤", "保暖内衣", "衬衫"],
     tops2Index: 0,
     tops2: [
@@ -24,7 +35,7 @@ Page({
       { name: "保暖内衣", value: 5 },
       { name: "衬衫", value: 6 },
     ],
-    bottoms: ["", "短裤", "薄长裤", "厚长裤", "秋裤"],
+    bottoms: ["", "短裤", "薄长裤", "厚长裤"],
     bottomsIndex: 0,
   },
 
@@ -37,7 +48,6 @@ Page({
     this.setData({
       tops2Index: e.detail.value,
     })
-    this.userSelect["tops"].push(e.detail.value)
   },
   bindBottomsChange: function (e) {
     this.setData({
@@ -45,8 +55,31 @@ Page({
     })
   },
 
-  bindConfirm: function(e) {
-    console.log(e)
+  bindConfirm: function() {
+    var that = this
+    var data2send = {}
+    var tops1 = that.data.tops1Index
+    var tops2 = that.data.tops2Index
+    var bottoms = that.data.bottomsIndex
+    data2send['tops1'] = tops1
+    data2send['tops2'] = tops2
+    data2send['bottoms'] = bottoms
+    var dataStr = JSON.stringify(data2send)
+    wx.request({
+      url: 'http://139.199.186.154:5678/diy',
+      method: 'POST',
+      data: dataStr,
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res)
+        that.setData({
+          userTemp: res.data["temp"],
+          tempAdvice: res.data["advice"]
+        })
+      }
+    })
   },
 
   /**

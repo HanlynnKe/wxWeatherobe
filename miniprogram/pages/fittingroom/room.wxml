@@ -24,8 +24,8 @@
             <view class="weui-label" style="color: #ffffff;">上装外搭  </view>
           </view>
           <view class="weui-cell__bd">
-            <picker bindchange="bindTops1Change" value="{{tops1Index}}" range="{{tops1}}">
-              <view class="weui-select" style="color: #ffffff;">{{tops1[tops1Index]}}</view>
+            <picker bindchange="bindTops1Change" value="{{tops1Index}}" range="{{tops1Name}}">
+              <view class="weui-select" style="color: #ffffff;">{{tops1[tops1Index].name}}</view>
             </picker>
           </view>
       </view>
