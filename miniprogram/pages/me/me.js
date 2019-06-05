@@ -25,8 +25,8 @@ Page({
     }
     // 向后端发送请求
     wx.request({
-      // url: 'https://www.fukutenki.xyz',
-      url: 'http://139.199.186.154:5678',
+      url: 'https://www.fukutenki.xyz',
+      // url: 'http://139.199.186.154:5678',
       success(res) {
         that.setData({
           responce: res.data

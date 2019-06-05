@@ -7,8 +7,38 @@ Page({
    */
   data: {
     bgImgUrl: '../../images/cloud.jpg',
-    userCnt: 0
+    images: [],
+    marqueePace: 1,//滚动速度
+    marqueeDistance: 0,//初始滚动距离
+    text: 'awsl',
+    size: 14,
+    orientation: 'left',//滚动方向
+    interval: 20, // 时间间隔
+    adUrl: '../../images/bg.jpg',
   },
+
+  chooseImage: function() {
+    var that = this
+    wx.chooseImage({
+      count: 0,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function(res) {
+        that.setData({
+          images: that.data.images.concat(res.tempFilePaths)
+        });
+        // console.log(that.data.images)
+      }
+    })
+  },
+
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.images // 需要预览的图片http链接列表
+    })
+  },
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -28,7 +58,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

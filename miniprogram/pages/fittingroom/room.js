@@ -66,7 +66,8 @@ Page({
     data2send['bottoms'] = bottoms
     var dataStr = JSON.stringify(data2send)
     wx.request({
-      url: 'http://139.199.186.154:5678/diy',
+      // url: 'http://139.199.186.154:5678/fit',
+      url: 'https://www.fukutenki.xyz/fit',
       method: 'POST',
       data: dataStr,
       header: {

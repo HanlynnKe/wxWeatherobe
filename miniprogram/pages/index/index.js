@@ -98,9 +98,10 @@ Page({
                 }
                 data2send = JSON.stringify(data2send)
                 // console.log(that.data)
-                console.log(data2send)
+                // console.log(data2send)
                 wx.request({
-                  url: 'http://139.199.186.154:5678/data',
+                  url: 'https://www.fukutenki.xyz/usr',
+                  // url: 'http://139.199.186.154:5678/usr',
                   method: 'POST',
                   data: data2send,
                   header: {
