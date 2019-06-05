@@ -5,3 +5,52 @@ page {
   height: 100%;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
+
+.flex-content-center {
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.num-content {
+  margin-top: 0rpx;
+  padding-left: 30rpx;
+}
+
+.user-num {
+  display: inline-block;
+  font-size: 300rpx;
+  color: white;
+  vertical-align: top;
+  padding: 0;
+}
+
+.user-num-bottom {
+  text-align: center;
+  font-size: 36rpx;
+  color: #f5f6fa;
+}
+
+.num-content__bottom {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 170rpx;
+}
+
+/*!
+ * WeUI v1.1.1 (https://github.com/weui/weui-wxss)
+ * Copyright 2017 Tencent, Inc.
+ * Licensed under the MIT license
+ */
+.weui-panel{position:relative;overflow:hidden}.weui-panel:first-child{margin-top:0}.weui-panel:before{top:0;border-top:1rpx solid #e5e5e5}.weui-panel:after,.weui-panel:before{content:" ";position:absolute;left:0;right:0;height:1px;color:#e5e5e5}.weui-panel:after{bottom:0;border-bottom:1rpx solid #e5e5e5}.weui-panel__hd{padding:14px 15px 10px;color:#ffffff;font-size:15px;position:relative}.weui-panel__hd:after{content:" ";position:absolute;left:0;bottom:0;right:0;height:1px;border-bottom:1rpx solid #e5e5e5;color:#e5e5e5;left:15px}
+
+.weui-media-box{padding:15px;position:relative}.weui-media-box:before{content:" ";position:absolute;left:0;top:0;right:0;height:1px;border-top:1rpx solid #e5e5e5;color:#e5e5e5;left:15px}.weui-media-box__title{font-weight:400;font-size:17px;width:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;word-wrap:break-word;word-break:break-all}.weui-media-box__desc{color:#ffffff;font-size:13px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}weui-media-box_appmsg{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}.weui-media-box__thumb{width:100%;height:100%;vertical-align:top}.weui-media-box__hd_in-appmsg{margin-right:.8em;width:60px;height:60px;line-height:60px;text-align:center}.weui-media-box__bd_in-appmsg{-webkit-box-flex:1;-webkit-flex:1;flex:1;min-width:0}
+
+.weui-flex{display:-webkit-box;display:-webkit-flex;display:flex}.weui-flex__item{-webkit-box-flex:1;-webkit-flex:1;flex:1}
+
+.weui-cells{position:relative;margin-top:1.17647059em;line-height:1.41176471;font-size:17px}.weui-cells:before{top:0;border-top:1rpx solid #d9d9d9}.weui-cells:after,.weui-cells:before{content:" ";position:absolute;left:0;right:0;height:1px;color:#d9d9d9}.weui-cells:after{bottom:0;border-bottom:1rpx solid #d9d9d9}.weui-cells__title{margin-top:.77em;margin-bottom:.77em;padding-left:15px;padding-right:15px;color:#ffffff;font-size:15px}.weui-cells_after-title{margin-top:0}.weui-cells__tips{margin-top:.3em;color:#999;padding-left:15px;padding-right:15px;font-size:14px}.weui-cell{padding:10px 15px;position:relative;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}.weui-cell:before{content:" ";position:absolute;left:0;top:0;right:0;height:1px;border-top:1rpx solid #d9d9d9;color:#d9d9d9;left:15px}.weui-cell:first-child:before{display:none}.weui-cell_active{background-color:#ececec}.weui-cell_primary{-webkit-box-align:start;-webkit-align-items:flex-start;align-items:flex-start}.weui-cell__bd{-webkit-box-flex:1;-webkit-flex:1;flex:1}.weui-cell__ft{text-align:right;color:#999}
+
+.weui-btn{margin-top:15px}.weui-btn:first-child{margin-top:0}.weui-btn-area{margin:1.17647059em 15px .3em}

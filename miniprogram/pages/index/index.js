@@ -1,5 +1,8 @@
 //index.js
+import config from '../../util/config'
+
 const app = getApp()
+
 import {
   getPosition,
   getWeaterInfo,
@@ -45,10 +48,13 @@ Page({
     apl: 0,
     rain_ins: null,
     snow_ins: null,
-    userInfo: {
-      userName: '',
-      userID: ''
-    }
+    openid: '',
+    uname: '',
+    ugender: 0,
+    ucountry: '',
+    uprovince: '',
+    ucity: '',
+    udistrict: ''
   },
 
   onLoad: function() {
@@ -62,6 +68,54 @@ Page({
       },
     })
     this.getPosition()
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        var that = this
+        var code = res.code
+        var appid = config.APP_ID
+        var appkey = config.APP_SECRET
+        var reqURL = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + appkey + '&js_code=' + code + '&grant_type=authorization_code'
+        wx.request({
+          url: reqURL,
+          success(res) {
+            let str = res.data.openid
+            that.setData({
+              openid: str
+            })
+            wx.getUserInfo({
+              success: res => {
+                // 可以将 res 发送给后台解码出 unionId
+                that.setData({
+                  uname: res.userInfo.nickName,
+                  ugender: res.userInfo.gender,
+                })
+                var data2send = {
+                  'openID': that.data.openid,
+                  'userName': that.data.uname,
+                  'userGender': that.data.ugender,
+                  'userPos': that.data.ucountry + that.data.uprovince + that.data.ucity + that.data.udistrict
+                }
+                data2send = JSON.stringify(data2send)
+                // console.log(that.data)
+                console.log(data2send)
+                wx.request({
+                  url: 'http://139.199.186.154:5678/data',
+                  method: 'POST',
+                  data: data2send,
+                  header: {
+                    'content-type': 'application/json' // 默认值
+                  },
+                  success(res) {
+                    console.log(res)
+                  }
+                })
+              }
+            })
+          }
+        })
+      }
+    })
   },
 
   getPosition: function() {
@@ -139,6 +193,13 @@ Page({
       if (res.statusCode == 200) {
         // console.log(res)
         let response = res.data.result
+        let uaddr = response.ad_info
+        this.setData({
+          ucountry: uaddr.nation,
+          uprovince: uaddr.province,
+          ucity: uaddr.city,
+          udistrict: uaddr.district
+        })
         let addr = response.formatted_addresses.recommend || response.rough
         this.setData({
           position: addr
@@ -207,6 +268,7 @@ Page({
     }
     getEveryHoursWeather(lat, lon, res => {
       let data = res.data.HeWeather6[0].hourly;
+      // console.log(data)
       let arrData = [];
       data.forEach(item => {
         let d = {};

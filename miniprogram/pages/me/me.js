@@ -28,7 +28,6 @@ Page({
       // url: 'https://www.fukutenki.xyz',
       url: 'http://139.199.186.154:5678',
       success(res) {
-        console.log(res)
         that.setData({
           responce: res.data
         })

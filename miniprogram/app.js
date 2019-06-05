@@ -15,6 +15,7 @@ App({
           wx.request({
             url: reqURL,
             success(res) {
+              // console.log(res)
               that.globalData.openid = res.data.openid
             }
           })
@@ -50,7 +51,7 @@ App({
     }
     // 设置全局变量
     this.globalData = {
-      openid: '',
+      openid: "",
       userInfo: {}
     }
   }

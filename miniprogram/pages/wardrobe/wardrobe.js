@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bgImgUrl: '../../images/cloud.jpg'
+    bgImgUrl: '../../images/cloud.jpg',
+    userCnt: 0
   },
 
   /**
