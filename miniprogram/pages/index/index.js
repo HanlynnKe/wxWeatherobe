@@ -73,11 +73,12 @@ Page({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var that = this
         var code = res.code
-        var appid = config.APP_ID
-        var appkey = config.APP_SECRET
-        var reqURL = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + appkey + '&js_code=' + code + '&grant_type=authorization_code'
+        var cod_pak = { 'code': code}
+        var cod2snd = JSON.stringify(cod_pak)
         wx.request({
-          url: reqURL,
+          url: 'https://www.fukutenki.xyz/id',
+          data: cod2snd,
+          method: 'POST',
           success(res) {
             let str = res.data.openid
             that.setData({
