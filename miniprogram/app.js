@@ -6,24 +6,24 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if( res.errMsg == "login:ok")
-          var that = this
-          var code = res.code
-          var appid = config.APP_ID
-          var appkey = config.APP_SECRET
-          var reqURL = 'https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+appkey+'&js_code='+ code +'&grant_type=authorization_code'
-          wx.request({
-            url: reqURL,
-            success(res) {
-              // console.log(res)
-              that.globalData.openid = res.data.openid
-            }
-          })
+        var that = this
+        var code = res.code
+        var cod_pak = { 'code': code }
+        var cod2snd = JSON.stringify(cod_pak)
+        wx.request({
+          url: 'https://www.fukutenki.xyz/id',
+          data: cod2snd,
+          method: 'POST',
+          success(res) {
+            that.globalData.openid = res.data.openid
+          }
+        })
       }
     })
     // 获取用户信息
     wx.getSetting({
       success: res => {
+        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({

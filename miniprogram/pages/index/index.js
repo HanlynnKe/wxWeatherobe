@@ -84,34 +84,43 @@ Page({
             that.setData({
               openid: str
             })
-            wx.getUserInfo({
+            // 获取用户信息
+            wx.getSetting({
               success: res => {
-                // 可以将 res 发送给后台解码出 unionId
-                that.setData({
-                  uname: res.userInfo.nickName,
-                  ugender: res.userInfo.gender,
-                })
-                var data2send = {
-                  'openID': that.data.openid,
-                  'userName': that.data.uname,
-                  'userGender': that.data.ugender,
-                  'userPos': that.data.ucountry + that.data.uprovince + that.data.ucity + that.data.udistrict
+                // console.log(res)
+                if (res.authSetting['scope.userInfo']) {
+                  // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                  wx.getUserInfo({
+                    success: res => {
+                      // 可以将 res 发送给后台解码出 unionId
+                      that.setData({
+                        uname: res.userInfo.nickName,
+                        ugender: res.userInfo.gender,
+                      })
+                      var data2send = {
+                        'openID': that.data.openid,
+                        'userName': that.data.uname,
+                        'userGender': that.data.ugender,
+                        'userPos': that.data.ucountry + that.data.uprovince + that.data.ucity + that.data.udistrict
+                      }
+                      data2send = JSON.stringify(data2send)
+                      // console.log(that.data)
+                      // console.log(data2send)
+                      wx.request({
+                        url: 'https://www.fukutenki.xyz/usr',
+                        // url: 'http://139.199.186.154:5678/usr',
+                        method: 'POST',
+                        data: data2send,
+                        header: {
+                          'content-type': 'application/json' // 默认值
+                        },
+                        success(res) {
+                          console.log(res)
+                        }
+                      })
+                    }
+                  })
                 }
-                data2send = JSON.stringify(data2send)
-                // console.log(that.data)
-                // console.log(data2send)
-                wx.request({
-                  url: 'https://www.fukutenki.xyz/usr',
-                  // url: 'http://139.199.186.154:5678/usr',
-                  method: 'POST',
-                  data: data2send,
-                  header: {
-                    'content-type': 'application/json' // 默认值
-                  },
-                  success(res) {
-                    console.log(res)
-                  }
-                })
               }
             })
           }

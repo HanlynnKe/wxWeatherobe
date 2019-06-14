@@ -7,6 +7,8 @@ Page({
    */
   data: {
     userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     bgImgUrl: '../../images/cloud.jpg',
     responce: ''
   },
@@ -14,10 +16,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function() {
     var that = this
+    console.log(app.globalData.userInfo)
     if (app.globalData.userInfo) {
-      // console.log(app.globalData)
       that.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
