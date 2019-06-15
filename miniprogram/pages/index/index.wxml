@@ -1,5 +1,5 @@
 <!-- index.wxml -->
-<view class="container" style='background: url({{bgImgUrl}}) center -200rpx / 100% no-repeat #62aadc;'>
+<view class="container">
     <view style='margin-top: -150rpx; padding-top: 150rpx;background: rgba(52,73,94, {{apl}})'>
       <view class='animation-view'>
         <view class='location' bind:tap="chooseLocation">

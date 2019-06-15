@@ -6,8 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bgImgUrl: '../../images/cloud.jpg',
-    
     userTemp: 26,
     tempAdvice: '感觉不错哦～',
 

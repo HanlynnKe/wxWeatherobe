@@ -1,15 +1,24 @@
-<view class="container" style="background: url({{bgImgUrl}}); height:100%">
+<view class="container">
   <view class="weui-panel weui-panel_access" style='margin-top: 200rpx;'>
-    <view class="weui-panel__hd">你的衣橱</view>
+    <view class="weui-panel__hd"> 我的衣橱</view>
     <view class="weui-panel__bd" style='margin-top: 20rpx;'>
       <view class="weui-flex">
-          <view class="weui-flex__item">
-              <view class="flex-content-center">
-                <view class="num-content">
-                  <text class="user-num">{{images.length}}</text>
-                </view>
-              </view>
+        <view class="weui-flex__item">
+          <view class="flex-content-center">
+            <view class="num-content">
+              <text class="user-num">{{images.length}}</text>
+            </view>
           </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="upload-btn">
+            <button class="weui-btn" bindtap="uploadImage" 
+            type="default" style="color: #82ccdd">上传</button>
+          </view>
+          <view class="delete-btn">
+            <button class="weui-btn" type="default" style="color: #82ccdd">删除</button>
+          </view>
+        </view>  
       </view>
     </view>
   </view>
@@ -25,13 +34,13 @@
                     <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                   </view>
                 </block>
-                <view class="weui-uploader__file">
+                <!-- <view class="weui-uploader__file">
                   <image class="weui-uploader__img" src="../../images/bg.jpg" mode="aspectFill" />
-                </view>
+                </view> -->
               </view>
-              <view class="weui-uploader__input-box">
+              <!-- <view class="weui-uploader__input-box">
                 <view class="weui-uploader__input" bindtap="chooseImage"></view>
-              </view>
+              </view> -->
             </view>
           </view>
         </view>

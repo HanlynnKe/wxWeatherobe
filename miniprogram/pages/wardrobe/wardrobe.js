@@ -6,8 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bgImgUrl: '../../images/cloud.jpg',
-    images: [],
+    bgImgUrl: 'https://github.com/HanlynnKe/wxWeatherobe/blob/master/miniprogram/images/cloud.jpg?raw=true',
+    images: [
+      'https://unsplash.it/200/200',
+      'https://unsplash.it/300/300',
+      'https://unsplash.it/400/400',
+      'https://unsplash.it/600/600',
+      'https://unsplash.it/800/800',
+      'https://unsplash.it/900/900',
+      'https://unsplash.it/1000/1000',
+      'https://unsplash.it/1200/1200',
+    ],
     marqueePace: 1,//滚动速度
     marqueeDistance: 0,//初始滚动距离
     text: 'awsl',
@@ -17,28 +26,11 @@ Page({
     adUrl: '../../images/bg.jpg',
   },
 
-  chooseImage: function() {
-    var that = this
-    wx.chooseImage({
-      count: 0,
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success: function(res) {
-        that.setData({
-          images: that.data.images.concat(res.tempFilePaths)
-        });
-        // console.log(that.data.images)
-      }
+  uploadImage: function() {
+    wx.navigateTo({
+      url: '../../pages/wardrobe/upload.wxml'
     })
   },
-
-  previewImage: function (e) {
-    wx.previewImage({
-      current: e.currentTarget.id, // 当前显示图片的http链接
-      urls: this.data.images // 需要预览的图片http链接列表
-    })
-  },
-  
 
   /**
    * 生命周期函数--监听页面加载

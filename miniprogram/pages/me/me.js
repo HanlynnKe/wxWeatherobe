@@ -9,7 +9,6 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    bgImgUrl: '../../images/cloud.jpg',
     responce: ''
   },
 

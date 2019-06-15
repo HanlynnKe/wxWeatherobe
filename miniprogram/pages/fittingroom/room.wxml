@@ -1,4 +1,4 @@
-<view class="container" style="background: url({{bgImgUrl}}); height:100%">
+<view class="container">
   <!-- <view class="top-title">Fitting Room</view> -->
   <view class="weui-panel weui-panel_access" style='margin-top: 200rpx;'>
     <view class="weui-panel__hd">你的搭配温度 ℃</view>

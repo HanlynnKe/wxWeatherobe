@@ -1,4 +1,4 @@
-<view class="container" style="background: url({{bgImgUrl}}); height:100%">
+<view class="container">
   <view class="weui-panel weui-panel_access" style='margin-top: 200rpx;'>
     <view class="weui-panel__hd">个人信息</view>
     <view class="weui-panel__bd" style='margin-top: 20rpx;'>
