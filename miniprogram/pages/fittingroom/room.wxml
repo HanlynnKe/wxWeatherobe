@@ -48,7 +48,7 @@
             <view class="weui-select" style="color: #ffffff;">{{bottoms[bottomsIndex]}}</view>
           </picker>
         </view>
-    </view>
+      </view>
   </view>
   <view class="weui-btn-area">
     <button class="weui-btn" type="default" bindtap="bindConfirm" style="color: #747d8c">确定</button>

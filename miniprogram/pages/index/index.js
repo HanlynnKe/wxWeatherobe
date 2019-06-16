@@ -77,9 +77,11 @@ Page({
         var cod2snd = JSON.stringify(cod_pak)
         wx.request({
           url: 'https://www.fukutenki.xyz/id',
+          // url: 'http://139.199.186.154:5678/id',
           data: cod2snd,
           method: 'POST',
           success(res) {
+            // console.log(res)
             let str = res.data.openid
             that.setData({
               openid: str

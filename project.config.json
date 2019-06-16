@@ -14,7 +14,7 @@
 	},
 	"appid": "wx6c0312f53346535d",
 	"projectname": "weatherobe",
-	"libVersion": "2.5.0",
+	"libVersion": "2.6.6",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"compileType": "miniprogram",

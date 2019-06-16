@@ -13,22 +13,14 @@ Page({
       'https://unsplash.it/400/400',
       'https://unsplash.it/600/600',
       'https://unsplash.it/800/800',
-      'https://unsplash.it/900/900',
       'https://unsplash.it/1000/1000',
       'https://unsplash.it/1200/1200',
-    ],
-    marqueePace: 1,//滚动速度
-    marqueeDistance: 0,//初始滚动距离
-    text: 'awsl',
-    size: 14,
-    orientation: 'left',//滚动方向
-    interval: 20, // 时间间隔
-    adUrl: '../../images/bg.jpg',
+    ]
   },
 
   uploadImage: function() {
     wx.navigateTo({
-      url: '../../pages/wardrobe/upload.wxml'
+      url: '../wardrobe/upload?id=' + app.globalData.openid
     })
   },
 

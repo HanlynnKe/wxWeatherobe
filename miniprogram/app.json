@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/wardrobe/wardrobe",
     "pages/fittingroom/room",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/wardrobe/upload"
   ],
   "window": {
     "backgroundColor": "#a7cad3",
@@ -16,30 +17,32 @@
   "tabBar": {
     "color": "#747d8c",
     "selectedColor": "#1e90ff",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "Weather",
-      "iconPath": "images/weather.png",
-      "selectedIconPath": "images/weather_select.png"
-    },
-    {
-      "pagePath": "pages/wardrobe/wardrobe",
-      "text": "Wardrobe",
-      "iconPath": "images/wardrobe.png",
-      "selectedIconPath": "images/wardrobe_select.png"
-    },
-    {
-      "pagePath": "pages/fittingroom/room",
-      "text": "Fitting Room",
-      "iconPath": "images/room.png",
-      "selectedIconPath": "images/room_select.png"
-    },
-    {
-      "pagePath": "pages/me/me",
-      "text": "Me",
-      "iconPath": "images/me.png",
-      "selectedIconPath": "images/me_select.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "Weather",
+        "iconPath": "images/weather.png",
+        "selectedIconPath": "images/weather_select.png"
+      },
+      {
+        "pagePath": "pages/wardrobe/wardrobe",
+        "text": "Wardrobe",
+        "iconPath": "images/wardrobe.png",
+        "selectedIconPath": "images/wardrobe_select.png"
+      },
+      {
+        "pagePath": "pages/fittingroom/room",
+        "text": "Fitting Room",
+        "iconPath": "images/room.png",
+        "selectedIconPath": "images/room_select.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "Me",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me_select.png"
+      }
+    ]
   },
   "permission": {
     "scope.userLocation": {
