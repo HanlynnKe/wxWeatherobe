@@ -8,7 +8,6 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     responce: ''
   },
 
@@ -17,9 +16,8 @@ Page({
    */
   onLoad: function() {
     var that = this
-    console.log(app.globalData.userInfo)
     if (app.globalData.userInfo) {
-      that.setData({
+      this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
@@ -37,7 +35,6 @@ Page({
   },
   //获取用户信息
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

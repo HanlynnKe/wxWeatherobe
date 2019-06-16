@@ -54,7 +54,16 @@ Page({
     ucountry: '',
     uprovince: '',
     ucity: '',
-    udistrict: ''
+    udistrict: '',
+    loginState: false
+  },
+
+  //获取用户信息
+  getUserInfo: function (e) {
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      loginState: true
+    })
   },
 
   onLoad: function() {

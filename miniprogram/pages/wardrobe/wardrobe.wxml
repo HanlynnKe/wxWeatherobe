@@ -12,11 +12,11 @@
         </view>
         <view class="weui-flex__item">
           <view class="upload-btn">
-            <button class="weui-btn" bindtap="uploadImage" 
-            type="default" style="color: #82ccdd">上传</button>
+            <button class="weui-btn" bindtap="uploadImage" plain="true"
+            type="default" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">上传</button>
           </view>
           <view class="delete-btn">
-            <button class="weui-btn" type="default" style="color: #82ccdd">删除</button>
+            <button class="weui-btn" plain="true" type="default" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">删除</button>
           </view>
         </view>  
       </view>

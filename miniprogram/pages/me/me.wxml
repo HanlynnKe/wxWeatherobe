@@ -2,8 +2,8 @@
   <view class="weui-panel weui-panel_access" style='margin-top: 200rpx;'>
     <view class="weui-panel__hd">个人信息</view>
     <view class="weui-panel__bd" style='margin-top: 20rpx;'>
-      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view class="userinfo" wx:else>
+      <button class="weui-btn" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" type="default" plain="true" bindgetuserinfo="getUserInfo" style="color: #ffffff; width: 50%; border: 2px solid #ffffff"> 我的信息 </button>
+      <view class="userinfo" wx:if="{{hasUserInfo}}">
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </view>
