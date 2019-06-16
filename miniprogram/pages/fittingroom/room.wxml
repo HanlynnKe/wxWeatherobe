@@ -1,7 +1,7 @@
 <view class="container">
   <!-- <view class="top-title">Fitting Room</view> -->
   <view class="weui-panel weui-panel_access" style='margin-top: 200rpx;'>
-    <view class="weui-panel__hd">你的搭配温度 ℃</view>
+    <view class="weui-panel__hd">我的搭配温度 ℃</view>
     <view class="weui-panel__bd" style='margin-top: 20rpx;'>
       <view class="weui-flex">
           <view class="weui-flex__item">
