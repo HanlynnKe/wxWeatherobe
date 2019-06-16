@@ -41,6 +41,9 @@ App({
         }
       }
     })
+    if (!wx.getStorageSync('histCnt')) {
+      wx.setStorageSync('histCnt', 0)
+    }
     // 使用云能力
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -52,7 +55,8 @@ App({
     // 设置全局变量
     this.globalData = {
       openid: "",
-      userInfo: {}
+      userInfo: {},
+      histCnt: 0
     }
   }
 })

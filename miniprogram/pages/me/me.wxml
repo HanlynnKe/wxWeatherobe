@@ -5,15 +5,27 @@
       <button class="weui-btn" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" type="default" plain="true" bindgetuserinfo="getUserInfo" style="color: #ffffff; width: 50%; border: 2px solid #ffffff"> 我的信息 </button>
       <view class="userinfo" wx:if="{{hasUserInfo}}">
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-name" style="color: #ffffff">{{userInfo.nickName}}</text>
-        <text class="userinfo-gender" wx:if="!({{userInfo.gender}}-1)" style="color: #ffffff">Mr.</text>
-        <text class="userinfo-gender" wx:else style="color: #ffffff">Ms.</text>
+        <text class="userinfo-name" style="color: #ffffff">
+          <text class="userinfo-gender" wx:if="!({{userInfo.gender}}-1)" style="color: #ffffff">Mr. {{userInfo.nickName}}</text>
+          <text class="userinfo-gender" wx:else style="color: #ffffff">Ms. {{userInfo.nickName}}</text>
+        </text>
         <text class="userinfo-addr" style="color: #ffffff">{{userInfo.country}} {{userInfo.province}}</text>
          <text style="color: #ffffff">|</text>
          <text style="color: #ffffff">\/</text>
       </view>
       <view class="usermotto">
         <view class='usermotto-context'>{{responce}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-panel weui-panel_access">
+    <view class="weui-panel__hd">搭配历史</view>
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text">
+        <view wx:for="{{logs}}" wx:key="id">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="color: #ffffff">{{item.choice}}</view>
+          <view class="weui-media-box__desc" style="margin-bottom: 15rpx">{{item.datetime}}</view>
+        </view>
       </view>
     </view>
   </view>

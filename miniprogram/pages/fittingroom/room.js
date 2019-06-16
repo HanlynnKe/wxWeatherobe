@@ -1,5 +1,7 @@
 // pages/fittingroom/room.js
 const app = getApp()
+var util = require('../../util/getime.js');
+
 Page({
 
   /**
@@ -9,7 +11,7 @@ Page({
     userTemp: 26,
     tempAdvice: '感觉不错哦～',
 
-    tops1Name: ["", "薄卫衣", "厚卫衣", "针织毛衣", "毛衣", 
+    tops1Name: ["", "薄卫衣", "针织毛衣", "厚卫衣", "毛衣", 
             "风衣", "棉服", "大衣", "薄款羽绒服", "厚款羽绒服"],
     tops1Index: 0,
     tops1: [
@@ -72,7 +74,19 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        // console.log(res)
+        var resTime = util.formatTime(new Date())
+        var outerTop = that.data.tops1[tops1].name
+        var innerTop = that.data.tops2[tops2].name
+        var bottom = that.data.bottoms[bottoms]
+        var index = wx.getStorageSync('histCnt') + 1
+        var log = {
+          'id': index,
+          'choice': outerTop + '+' +  innerTop + '+' +bottom,
+          'datetime': resTime
+        }
+        wx.setStorageSync(String(index), log)
+        app.globalData.histCnt = index
+        wx.setStorageSync('histCnt', index)
         that.setData({
           userTemp: res.data["temp"],
           tempAdvice: res.data["advice"]
