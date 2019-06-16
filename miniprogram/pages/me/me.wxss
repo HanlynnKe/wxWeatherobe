@@ -19,10 +19,6 @@ page {
   border-radius: 50%;
 }
 
-.userinfo-nickname {
-  color: #ffffff;
-}
-
 .usermotto {
   display: flex;
   flex-direction: column;
