@@ -46,7 +46,8 @@
       </view>
     </view>
   </view>
-  <view class="weui-btn-area">
+  <view class="weui-btn-area" style="margin-top:300rpx">
     <button class="weui-btn" type="default" bindtap="bindConfirm" style="color: #747d8c">确定</button>
+    <button class="weui-btn" type="default" bindtap="bindCancel" style="color: #747d8c">取消</button>
   </view>
 </view>

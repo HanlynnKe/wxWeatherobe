@@ -9,11 +9,12 @@ Page({
   data: {
     more: true,
     del: false,
-    image2send: [],
+    uid: '',
+    image2send: '',
     classes: ["", "背心", "T恤", "薄卫衣", "厚卫衣", "针织毛衣",
      "保暖内衣", "衬衫", "毛衣", "风衣", "棉服", "大衣", "薄款羽绒服",
       "厚款羽绒服", "短裤", "薄长裤", "厚长裤"],
-    classIndex: 0,
+    classIndex: 0
   },
 
   chooseImage: function () {
@@ -24,7 +25,7 @@ Page({
       sourceType: ['album', 'camera'],
       success: function (res) {
         that.setData({
-          image2send: that.data.image2send.concat(res.tempFilePaths)
+          image2send: res.tempFilePaths,
         })
         if (that.data.image2send.length == 1){
           that.setData({
@@ -64,15 +65,35 @@ Page({
     })
   },
 
-  bindConfirm: function (e) {
+  bindConfirm: function () {
     var pages = getCurrentPages()   //页面栈
-    console.log(pages)
-    var prevPage = pages[pages.length - 1];  //上一个页面
-    //直接调用上一个页面对象的setData()方法，把数据存到上一个页面中去
+    var prevPage = pages[pages.length - 2];  //上一个页面
     prevPage.setData({
-      images: prevPage.data.images.push(this.data.image2send)
+      images: prevPage.data.images.concat(this.data.image2send)
     })
-    console.log('uploaded!')
+    var addPak = {
+      'openid': this.data.uid,
+      'cosclass': this.data.classIndex,
+      'cosurl': this.data.image2send
+    }
+    addPak = JSON.stringify(addPak)
+    wx.request({
+      url: 'https://www.fukutenki.xyz/upload',
+      // url: 'http://139.199.186.154:5678/upload',
+      method: 'POST',
+      data: addPak,
+      success(res) {
+        console.log(res)
+        if(res.data == 'upload succeeded!') {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      }
+    })
+  },
+
+  bindCancel: function() {
     wx.navigateBack({
       delta: 1
     })
@@ -82,7 +103,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.id)
+    this.setData({
+      uid: options.id
+    })
   },
 
   /**

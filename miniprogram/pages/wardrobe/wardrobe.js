@@ -14,13 +14,20 @@ Page({
       'https://unsplash.it/600/600',
       'https://unsplash.it/800/800',
       'https://unsplash.it/1000/1000',
-      'https://unsplash.it/1200/1200',
+      'https://unsplash.it/1200/1200'
     ]
   },
 
   uploadImage: function() {
     wx.navigateTo({
       url: '../wardrobe/upload?id=' + app.globalData.openid
+    })
+  },
+
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.images, // 需要预览的图片http链接列表
     })
   },
 
