@@ -54,7 +54,6 @@ Page({
       }
     })
     // 读取搭配历史
-    debugger
     var histCnt = wx.getStorageInfoSync('histCnt').keys.length -1
     var uhist = []
     for(var i=1; i<=histCnt; i++) {
@@ -72,5 +71,12 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.onLoad()
+  },
 })

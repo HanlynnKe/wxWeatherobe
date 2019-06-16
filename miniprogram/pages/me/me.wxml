@@ -22,7 +22,7 @@
     <view class="weui-panel__hd">搭配历史</view>
     <view class="weui-panel__bd">
       <view class="weui-media-box weui-media-box_text">
-        <view wx:for="{{logs}}" wx:key="id">
+        <view wx:for-items="{{logs}}" wx:key="item.id">
           <view class="weui-media-box__title weui-media-box__title_in-text" style="color: #ffffff">{{item.choice}}</view>
           <view class="weui-media-box__desc" style="margin-bottom: 15rpx">{{item.datetime}}</view>
         </view>

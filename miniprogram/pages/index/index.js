@@ -25,7 +25,7 @@ import Rain from '../../class/Rain.js'
 import Snow from '../../class/Snow.js'
 Page({
   data: {
-    bgImgUrl: '../../images/cloud.jpg',
+    bgImgUrl: 'https://upload.cc/i1/2019/06/15/fpBqLP.jpg',
     location: {
       x: '116.40',
       y: '39.9',
