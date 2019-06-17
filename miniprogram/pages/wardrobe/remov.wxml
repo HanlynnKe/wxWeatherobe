@@ -1,0 +1,29 @@
+<!--miniprogram/pages/wardrobe/remov.wxml-->
+<import src="../../components/wux-gallery/gallery.wxml"/>
+
+<template is="gallery" data="{{ ...$wux.gallery }}"/>
+
+<view class="container">
+  <view class="weui-cells__title" style="margin-top: 150rpx;">管理你的衣橱</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <view class="weui-uploader">
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files">
+              <block wx:for-items="{{urls}}" wx:key="{{index}}">
+                <view class="weui-uploader__file" bindtap="showGallery" data-current="{{index}}">
+                  <image class="weui-uploader__img" src="{{item}}" />
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area" style="margin-top:300rpx">
+    <button class="weui-btn" type="default" plain="true" bindtap="bindConfirm" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">确定</button>
+    <button class="weui-btn" type="default" plain="true" bindtap="bindCancel" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">取消</button>
+  </view>
+</view>

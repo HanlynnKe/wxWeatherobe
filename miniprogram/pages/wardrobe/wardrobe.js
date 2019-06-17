@@ -7,20 +7,18 @@ Page({
    */
   data: {
     bgImgUrl: 'https://github.com/HanlynnKe/wxWeatherobe/blob/master/miniprogram/images/cloud.jpg?raw=true',
-    images: [
-      'https://unsplash.it/200/200',
-      'https://unsplash.it/300/300',
-      'https://unsplash.it/400/400',
-      'https://unsplash.it/600/600',
-      'https://unsplash.it/800/800',
-      'https://unsplash.it/1000/1000',
-      'https://unsplash.it/1200/1200'
-    ]
+    images: []
   },
 
   uploadImage: function() {
     wx.navigateTo({
       url: '../wardrobe/upload?id=' + app.globalData.openid
+    })
+  },
+
+  removeImage: function () {
+    wx.navigateTo({
+      url: '../wardrobe/remov?id=' + app.globalData.openid
     })
   },
 
@@ -35,7 +33,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      images: app.globalData.closet
+    })
   },
 
   /**
@@ -49,7 +49,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.onLoad()
   },
 
   /**

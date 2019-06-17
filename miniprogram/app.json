@@ -4,7 +4,8 @@
     "pages/wardrobe/wardrobe",
     "pages/fittingroom/room",
     "pages/me/me",
-    "pages/wardrobe/upload"
+    "pages/wardrobe/upload",
+    "pages/wardrobe/remov"
   ],
   "window": {
     "backgroundColor": "#a7cad3",

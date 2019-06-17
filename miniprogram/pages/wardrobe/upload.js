@@ -10,7 +10,7 @@ Page({
     more: true,
     del: false,
     uid: '',
-    image2send: '',
+    image2send: [],
     classes: ["", "背心", "T恤", "薄卫衣", "厚卫衣", "针织毛衣",
      "保暖内衣", "衬衫", "毛衣", "风衣", "棉服", "大衣", "薄款羽绒服",
       "厚款羽绒服", "短裤", "薄长裤", "厚长裤"],
@@ -66,11 +66,13 @@ Page({
   },
 
   bindConfirm: function () {
-    var pages = getCurrentPages()   //页面栈
-    var prevPage = pages[pages.length - 2];  //上一个页面
-    prevPage.setData({
-      images: prevPage.data.images.concat(this.data.image2send)
-    })
+    // var pages = getCurrentPages()   //页面栈
+    // var prevPage = pages[pages.length - 2];  //上一个页面
+    // prevPage.setData({
+    //   images: prevPage.data.images.concat(this.data.image2send)
+    // })
+    app.globalData.closet = app.globalData.closet.concat(this.data.image2send)
+    console.log(app.globalData.closet)
     var addPak = {
       'openid': this.data.uid,
       'cosclass': this.data.classIndex,

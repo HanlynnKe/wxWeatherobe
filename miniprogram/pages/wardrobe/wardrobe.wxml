@@ -16,7 +16,7 @@
             type="default" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">上传</button>
           </view>
           <view class="delete-btn">
-            <button class="weui-btn" plain="true" type="default" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">删除</button>
+            <button class="weui-btn" bindtap="removeImage" plain="true" type="default" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">删除</button>
           </view>
         </view>  
       </view>

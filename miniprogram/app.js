@@ -1,6 +1,9 @@
 //app.js
 import config from '/util/config'
+import Wux from 'components/wux-gallery/wux'
+
 App({
+  Wux: Wux,
   onLaunch: function () {
     // 登录
     wx.login({
@@ -56,7 +59,16 @@ App({
     this.globalData = {
       openid: "",
       userInfo: {},
-      histCnt: 0
+      histCnt: 0,
+      closet: [
+        'https://unsplash.it/200/200',
+        'https://unsplash.it/300/300',
+        'https://unsplash.it/400/400',
+        'https://unsplash.it/600/600',
+        'https://unsplash.it/800/800',
+        'https://unsplash.it/1000/1000',
+        'https://unsplash.it/1200/1200'
+      ]
     }
   }
 })
