@@ -99,7 +99,7 @@
 
       </view>
 
-      <!-- <view class='live-index-view'>
+      <view class='live-index-view'>
         <view class='live-index-item'>
           <view class='live-index-item-left'>
             <view class='live-index-top-txt'>
@@ -172,7 +172,7 @@
             </view>
           </view>
         </view>
-      </view> -->
+      </view>
 
       <!-- <view class='last-view'>
         <view class='last-view-item' wx:for="{{lifeStyle}}" wx:key="item.type">

@@ -115,7 +115,6 @@ Page({
                         'userPos': that.data.ucountry + that.data.uprovince + that.data.ucity + that.data.udistrict
                       }
                       data2send = JSON.stringify(data2send)
-                      // console.log(that.data)
                       // console.log(data2send)
                       wx.request({
                         url: 'https://www.fukutenki.xyz/usr',
@@ -242,6 +241,24 @@ Page({
     getWeatherLive(lat, lon, res => {
       // console.log(res)
       let data = res.data.HeWeather6[0].now;
+      let realtimetp = data.fl
+      let humidity = data.hum
+      let windspeed = data.wind_spd
+      let realtimePak = {
+        'realtimetp': realtimetp,
+        'humidity': humidity,
+        'windspeed': windspeed
+      }
+      realtimePak = JSON.stringify(realtimePak)
+      // console.log(realtimePak)
+      wx.request({
+        url: 'https://www.fukutenki.xyz/live',
+        method: 'POST',
+        data: realtimePak,
+        success(res) {
+          console.log(res)
+        }
+      })
       data.iconType = this.data.iconTypeObj[data.cond_code]
       let hour = new Date().getHours()
       let apl = 0
@@ -290,7 +307,36 @@ Page({
     }
     getEveryHoursWeather(lat, lon, res => {
       let data = res.data.HeWeather6[0].hourly;
-      // console.log(data)
+      let time1 = {
+        'time1_tmp': data[0].tmp,
+        'time1_hum': data[0].hum,
+        'time1_wsd': data[0].wind_spd
+      }
+      let time3 = {
+        'time3_tmp': data[1].tmp,
+        'time3_hum': data[1].hum,
+        'time3_wsd': data[1].wind_spd
+      }
+      let time6 = {
+        'time6_tmp': data[2].tmp,
+        'time6_hum': data[2].hum,
+        'time6_wsd': data[2].wind_spd
+      }
+      let nxtPak = {
+        'time1': time1,
+        'time3': time3,
+        'time6': time6
+      }
+      nxtPak = JSON.stringify(nxtPak)
+      // console.log(nxtPak)
+      wx.request({
+        url: 'https://www.fukutenki.xyz/next6hrs',
+        method: 'POST',
+        data: nxtPak,
+        success(res) {
+          console.log(res)
+        }
+      })
       let arrData = [];
       data.forEach(item => {
         let d = {};
@@ -386,6 +432,10 @@ Page({
     }, err => {
 
     })
+  },
+
+  onShow: function () {
+    
   },
 
   onPullDownRefresh: function() {

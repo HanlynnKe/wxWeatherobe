@@ -72,7 +72,6 @@ Page({
     //   images: prevPage.data.images.concat(this.data.image2send)
     // })
     app.globalData.closet = app.globalData.closet.concat(this.data.image2send)
-    console.log(app.globalData.closet)
     var addPak = {
       'openid': this.data.uid,
       'cosclass': this.data.classIndex,

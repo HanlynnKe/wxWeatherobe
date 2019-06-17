@@ -11,7 +11,6 @@ Page({
     var pages = getCurrentPages()   //页面栈
     var prevPage = pages[pages.length - 2];  //上一个页面
     console.log(this.data.removItems)
-    
   },
 
   bindCancel: function () {
