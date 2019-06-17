@@ -68,7 +68,13 @@ App({
         'https://unsplash.it/800/800',
         'https://unsplash.it/1000/1000',
         'https://unsplash.it/1200/1200'
-      ]
+      ],
+      date: '',
+      realtimetp: 0,
+      humidity: 0,
+      wind_spd: 0,
+      precipit: 0,
+      next6hrs: {}
     }
   }
 })

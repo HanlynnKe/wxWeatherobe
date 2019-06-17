@@ -64,6 +64,31 @@ Page({
     this.setData({
       loginState: true
     })
+    // console.log(app.globalData)
+    const data = app.globalData
+    let date = data.date
+    let realtimetp = data.realtimetp
+    let humidity = data.humidity
+    let windspeed = data.wind_spd
+    let precipit = data.precipit
+    let next6hrs = data.next6hrs
+    let strategyPak = {
+      'date': date,
+      'realtimetp': realtimetp,
+      'humidity': humidity,
+      'windspeed': windspeed,
+      'precipit': precipit,
+      'next6hrs': next6hrs
+    }
+    strategyPak = JSON.stringify(strategyPak)
+    wx.request({
+      url: 'https://www.fukutenki.xyz/strategy',
+      method: 'POST',
+      data: strategyPak,
+      success(res) {
+        console.log(res)
+      }
+    })
   },
 
   onLoad: function() {
@@ -80,10 +105,10 @@ Page({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var that = this
-        var code = res.code
-        var cod_pak = { 'code': code}
-        var cod2snd = JSON.stringify(cod_pak)
+        let that = this
+        let code = res.code
+        let cod_pak = { 'code': code}
+        let cod2snd = JSON.stringify(cod_pak)
         wx.request({
           url: 'https://www.fukutenki.xyz/id',
           // url: 'http://139.199.186.154:5678/id',
@@ -108,7 +133,7 @@ Page({
                         uname: res.userInfo.nickName,
                         ugender: res.userInfo.gender,
                       })
-                      var data2send = {
+                      let data2send = {
                         'openID': that.data.openid,
                         'userName': that.data.uname,
                         'userGender': that.data.ugender,
@@ -239,11 +264,13 @@ Page({
       return
     }
     getWeatherLive(lat, lon, res => {
-      // console.log(res)
       let data = res.data.HeWeather6[0].now;
       let realtimetp = data.fl
       let humidity = data.hum
       let windspeed = data.wind_spd
+      app.globalData.realtimetp = realtimetp
+      app.globalData.humidity = humidity
+      app.globalData.wind_spd = windspeed
       let realtimePak = {
         'realtimetp': realtimetp,
         'humidity': humidity,
@@ -256,7 +283,7 @@ Page({
         method: 'POST',
         data: realtimePak,
         success(res) {
-          console.log(res)
+          // console.log(res)
         }
       })
       data.iconType = this.data.iconTypeObj[data.cond_code]
@@ -327,6 +354,7 @@ Page({
         'time3': time3,
         'time6': time6
       }
+      app.globalData.next6hrs = nxtPak
       nxtPak = JSON.stringify(nxtPak)
       // console.log(nxtPak)
       wx.request({
@@ -334,7 +362,7 @@ Page({
         method: 'POST',
         data: nxtPak,
         success(res) {
-          console.log(res)
+          // console.log(res)
         }
       })
       let arrData = [];
@@ -383,6 +411,8 @@ Page({
         todayData: data[0],
         tomorrowData: data[1]
       })
+      app.globalData.date = data[0].date
+      app.globalData.precipit = data[0].pop
     }, fail => {
 
     })
@@ -432,10 +462,6 @@ Page({
     }, err => {
 
     })
-  },
-
-  onShow: function () {
-    
   },
 
   onPullDownRefresh: function() {

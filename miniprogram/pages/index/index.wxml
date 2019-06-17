@@ -1,7 +1,7 @@
 <!-- index.wxml -->
 <view class="container">
     <view class="weui-btn-area" wx:if="{{!loginState}}" style="margin-top:500rpx">
-      <button class="weui-btn" open-type="getUserInfo" type="default" plain="true" bindgetuserinfo="getUserInfo" style="color: #ffffff; width: 50%; border: 2px solid #ffffff;"> Login </button>
+      <button class="weui-btn" open-type="getUserInfo" type="default" plain="true" bindgetuserinfo="getUserInfo" style="color: #ffffff; width: 50%; border: 2px solid #ffffff;"> Weatherobe </button>
     </view>
     <view style='margin-top: -150rpx; padding-top: 150rpx;background: rgba(52,73,94, {{apl}})' wx:if="{{loginState}}">
       <view class='animation-view'>
