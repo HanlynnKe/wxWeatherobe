@@ -12,6 +12,8 @@
               </view>
           </view>
           <view class="weui-flex__item">
+            <view class="temp-tip" style="font-size: 12px;">{{tempTip}}</view>
+            <view class="temp-tip" style="font-size: 16px;">{{todayFit}}</view>
             <view class="fit-advice">{{tempAdvice}}</view>
           </view>
       </view>
@@ -51,6 +53,6 @@
       </view>
   </view>
   <view class="weui-btn-area">
-    <button class="weui-btn" type="default" bindtap="bindConfirm" style="color: #747d8c">确定</button>
+    <button class="weui-btn" type="default" plain="true" bindtap="bindConfirm" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">确定</button>
   </view>
 </view>

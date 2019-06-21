@@ -1,9 +1,15 @@
 <!-- index.wxml -->
 <view class="container">
     <view class="weui-btn-area" wx:if="{{!loginState}}" style="margin-top:500rpx">
-      <button class="weui-btn" open-type="getUserInfo" type="default" plain="true" bindgetuserinfo="getUserInfo" style="color: #ffffff; width: 50%; border: 2px solid #ffffff;"> Weatherobe </button>
+      <button class="weui-btn" open-type="getUserInfo" type="default" plain="true" bindgetuserinfo="getUserInfo" style="color: #ffffff; width: 50%; border: 2px solid #ffffff;margin-bottom: 80rpx"> Weatherobe </button>
+      <view class="welcome" style="color: #ffffff;display: flex;justify-content: center;flex-direction: row;height: 500rpx;width: 100%;box-sizing: border-box;">{{welcome}}</view>
+    </view>
+    <view class="weui-btn-area" wx:if="{{chgState}}" style="margin-top:500rpx">
+      <button class="weui-btn" type="default" plain="true" bindtap="getStrategy" style="color: #ffffff; width: 50%; border: 2px solid #ffffff;margin-bottom: 80rpx"> Weatherobe </button>
+      <view class="welcome" style="color: #ffffff;display: flex;justify-content: center;flex-direction: row;height: 500rpx;width: 100%;box-sizing: border-box;">{{welcome}}</view>
     </view>
     <view style='margin-top: -150rpx; padding-top: 150rpx;background: rgba(52,73,94, {{apl}})' wx:if="{{loginState}}">
+    <view wx:if="{{!chgState}}">
       <view class='animation-view'>
         <view class='location' bind:tap="chooseLocation">
           <myicon class="icon" type="dingwei"></myicon>
@@ -180,6 +186,7 @@
           <view class='last-view-item-bottom'>{{item.brf}}</view>
         </view>
       </view> -->
+    </view>
     </view>
   <!-- </scroll-view> -->
 </view>
