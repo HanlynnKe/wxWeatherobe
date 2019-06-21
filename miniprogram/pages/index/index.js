@@ -23,9 +23,11 @@ import {
 } from '../../util/utils'
 import Rain from '../../class/Rain.js'
 import Snow from '../../class/Snow.js'
+
 Page({
   data: {
     bgImgUrl: 'https://upload.cc/i1/2019/06/15/fpBqLP.jpg',
+    welcome: '',
     location: {
       x: '116.40',
       y: '39.9',
@@ -55,7 +57,9 @@ Page({
     uprovince: '',
     ucity: '',
     udistrict: '',
-    loginState: false
+    loginState: false,
+    chgState: false,
+    fit_list: []
   },
 
   //获取用户信息
@@ -64,7 +68,11 @@ Page({
     this.setData({
       loginState: true
     })
-    // console.log(app.globalData)
+    this.getStrategy()
+  },
+
+  getStrategy: function() {
+    let that = this
     const data = app.globalData
     let date = data.date
     let realtimetp = data.realtimetp
@@ -83,12 +91,31 @@ Page({
     strategyPak = JSON.stringify(strategyPak)
     wx.request({
       url: 'https://www.fukutenki.xyz/strategy',
+      // url: 'http://139.199.186.154:5678/strategy',
       method: 'POST',
       data: strategyPak,
       success(res) {
-        console.log(res)
+        let data = res.data
+        let todayFit = ''
+        let max = data.str1.length
+        let rand = Math.floor(Math.random() * max);
+        let rand_fit = data.str1[rand]
+        for (let item in rand_fit) {
+          todayFit = todayFit + rand_fit[item] + '+'
+        }
+        todayFit = todayFit.substring(0, todayFit.length - 1)
+        that.setData({
+          warmPrompt: that.data.warmPrompt + data.str2,
+        })
+        app.globalData.tempTip = data.str3
+        app.globalData.todayFit = todayFit
       }
     })
+    if(this.data.chgState == true) {
+      this.setData({
+        chgState: false
+      })
+    }
   },
 
   onLoad: function() {
@@ -115,8 +142,11 @@ Page({
           data: cod2snd,
           method: 'POST',
           success(res) {
-            // console.log(res)
             let str = res.data.openid
+            wx.setStorage({
+              key: 'openid',
+              data: str,
+            })
             that.setData({
               openid: str
             })
@@ -137,10 +167,9 @@ Page({
                         'openID': that.data.openid,
                         'userName': that.data.uname,
                         'userGender': that.data.ugender,
-                        'userPos': that.data.ucountry + that.data.uprovince + that.data.ucity + that.data.udistrict
+                        'userPos': res.userInfo.country + res.userInfo.province + res.userInfo.city
                       }
                       data2send = JSON.stringify(data2send)
-                      // console.log(data2send)
                       wx.request({
                         url: 'https://www.fukutenki.xyz/usr',
                         // url: 'http://139.199.186.154:5678/usr',
@@ -150,7 +179,9 @@ Page({
                           'content-type': 'application/json' // 默认值
                         },
                         success(res) {
-                          console.log(res)
+                          that.setData({
+                            welcome: res.data
+                          })
                         }
                       })
                     }
@@ -185,7 +216,6 @@ Page({
   },
 
   updateLocation: function(res) {
-    // console.log(res)
     if(this.data.rain_ins) {
       this.data.rain_ins.stop()
     }
@@ -224,6 +254,9 @@ Page({
         if (latitude == x && longitude == y) {
 
         } else {
+          this.setData({
+            chgState: true
+          })
           this.updateLocation(res)
         }
       }
@@ -237,7 +270,6 @@ Page({
     })
     getPosition(lat, lon, (res) => {
       if (res.statusCode == 200) {
-        // console.log(res)
         let response = res.data.result
         let uaddr = response.ad_info
         this.setData({
@@ -271,21 +303,21 @@ Page({
       app.globalData.realtimetp = realtimetp
       app.globalData.humidity = humidity
       app.globalData.wind_spd = windspeed
-      let realtimePak = {
-        'realtimetp': realtimetp,
-        'humidity': humidity,
-        'windspeed': windspeed
-      }
-      realtimePak = JSON.stringify(realtimePak)
-      // console.log(realtimePak)
-      wx.request({
-        url: 'https://www.fukutenki.xyz/live',
-        method: 'POST',
-        data: realtimePak,
-        success(res) {
-          // console.log(res)
-        }
-      })
+      // let realtimePak = {
+      //   'realtimetp': realtimetp,
+      //   'humidity': humidity,
+      //   'windspeed': windspeed
+      // }
+      // realtimePak = JSON.stringify(realtimePak)
+      // // console.log(realtimePak)
+      // wx.request({
+      //   url: 'https://www.fukutenki.xyz/live',
+      //   method: 'POST',
+      //   data: realtimePak,
+      //   success(res) {
+      //     // console.log(res)
+      //   }
+      // })
       data.iconType = this.data.iconTypeObj[data.cond_code]
       let hour = new Date().getHours()
       let apl = 0
@@ -355,16 +387,16 @@ Page({
         'time6': time6
       }
       app.globalData.next6hrs = nxtPak
-      nxtPak = JSON.stringify(nxtPak)
-      // console.log(nxtPak)
-      wx.request({
-        url: 'https://www.fukutenki.xyz/next6hrs',
-        method: 'POST',
-        data: nxtPak,
-        success(res) {
-          // console.log(res)
-        }
-      })
+      // nxtPak = JSON.stringify(nxtPak)
+      // // console.log(nxtPak)
+      // wx.request({
+      //   url: 'https://www.fukutenki.xyz/next6hrs',
+      //   method: 'POST',
+      //   data: nxtPak,
+      //   success(res) {
+      //     // console.log(res)
+      //   }
+      // })
       let arrData = [];
       data.forEach(item => {
         let d = {};
@@ -465,6 +497,9 @@ Page({
   },
 
   onPullDownRefresh: function() {
+    this.setData({
+      chgState: true
+    })
     this.getPosition()
   },
 

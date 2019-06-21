@@ -14,6 +14,11 @@ page {
 
 .fit-advice {
   color: white;
+  margin-top: 20rpx;
+}
+
+.temp-tip {
+  color: white;
 }
 
 .flex-content-center {

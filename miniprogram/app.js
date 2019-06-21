@@ -1,6 +1,6 @@
 //app.js
 import config from '/util/config'
-import Wux from 'components/wux-gallery/wux'
+import Wux from './wux.js'
 
 App({
   Wux: Wux,
@@ -9,18 +9,6 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var that = this
-        var code = res.code
-        var cod_pak = { 'code': code }
-        var cod2snd = JSON.stringify(cod_pak)
-        wx.request({
-          url: 'https://www.fukutenki.xyz/id',
-          data: cod2snd,
-          method: 'POST',
-          success(res) {
-            that.globalData.openid = res.data.openid
-          }
-        })
       }
     })
     // 获取用户信息
@@ -60,21 +48,16 @@ App({
       openid: "",
       userInfo: {},
       histCnt: 0,
-      closet: [
-        'https://unsplash.it/200/200',
-        'https://unsplash.it/300/300',
-        'https://unsplash.it/400/400',
-        'https://unsplash.it/600/600',
-        'https://unsplash.it/800/800',
-        'https://unsplash.it/1000/1000',
-        'https://unsplash.it/1200/1200'
-      ],
+      wardrobe: [],
       date: '',
       realtimetp: 0,
       humidity: 0,
       wind_spd: 0,
       precipit: 0,
-      next6hrs: {}
+      next6hrs: {},
+      tempTip: '',
+      todayFit: '',
+      strategy: {}
     }
   }
 })

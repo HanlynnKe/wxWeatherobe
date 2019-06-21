@@ -1,5 +1,6 @@
 // miniprogram/pages/wardrobe/upload.js
 const app = getApp()
+var util = require('../../util/getime.js');
 
 Page({
 
@@ -66,26 +67,37 @@ Page({
   },
 
   bindConfirm: function () {
-    // var pages = getCurrentPages()   //页面栈
-    // var prevPage = pages[pages.length - 2];  //上一个页面
-    // prevPage.setData({
-    //   images: prevPage.data.images.concat(this.data.image2send)
-    // })
+    var that = this
+    var reqTime = util.formatTime(new Date())
     app.globalData.closet = app.globalData.closet.concat(this.data.image2send)
     var addPak = {
       'openid': this.data.uid,
       'cosclass': this.data.classIndex,
-      'cosurl': this.data.image2send
+      'cosurl': this.data.image2send,
+      'datetime': reqTime
     }
     addPak = JSON.stringify(addPak)
+    // console.log(addPak)
     wx.request({
       url: 'https://www.fukutenki.xyz/upload',
       // url: 'http://139.199.186.154:5678/upload',
       method: 'POST',
       data: addPak,
       success(res) {
-        console.log(res)
-        if(res.data == 'upload succeeded!') {
+        if(res.data == 'class error!') {
+          wx.showToast({
+            title: '请输入类别！',
+            icon: 'loading',
+            duration: 3000
+          })
+        } else {
+          var cosid = res.data
+          var cosurl = that.data.image2send.toString()
+          var newimg = {
+            id: cosid,
+            url: cosurl
+          }
+          app.globalData.wardrobe.push(newimg)
           wx.navigateBack({
             delta: 1
           })
@@ -107,54 +119,5 @@ Page({
     this.setData({
       uid: options.id
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

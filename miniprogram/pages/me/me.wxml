@@ -5,28 +5,29 @@
       <button class="weui-btn" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" type="default" plain="true" bindgetuserinfo="getUserInfo" style="color: #ffffff; width: 50%; border: 2px solid #ffffff"> 我的信息 </button>
       <view class="userinfo" wx:if="{{hasUserInfo}}">
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-name" style="color: #ffffff">
-          <text class="userinfo-gender" wx:if="!({{userInfo.gender}}-1)" style="color: #ffffff">Mr. {{userInfo.nickName}}</text>
-          <text class="userinfo-gender" wx:else style="color: #ffffff">Ms. {{userInfo.nickName}}</text>
+         <text class="userinfo-name" style="color: #ffffff">
+          <text wx:if="{{male}}">Ms. {{userInfo.nickName}}</text>
+          <text wx:else>Mr. {{userInfo.nickName}}</text>
         </text>
-        <text class="userinfo-addr" style="color: #ffffff">{{userInfo.country}} {{userInfo.province}}</text>
-         <text style="color: #ffffff">|</text>
-         <text style="color: #ffffff">\/</text>
-      </view>
-      <view class="usermotto">
-        <view class='usermotto-context'>{{responce}}</view>
+        <text class="userinfo-addr" style="color: #ffffff; margin-bottom: 30rpx">{{userInfo.country}} {{userInfo.province}}</text>
       </view>
     </view>
   </view>
-  <view class="weui-panel weui-panel_access">
+  <scroll-view scroll-y="true" style="height: 500px">
+    <view class="weui-panel weui-panel_access">
     <view class="weui-panel__hd">搭配历史</view>
     <view class="weui-panel__bd">
       <view class="weui-media-box weui-media-box_text">
         <view wx:for-items="{{logs}}" wx:key="item.id">
           <view class="weui-media-box__title weui-media-box__title_in-text" style="color: #ffffff">{{item.choice}}</view>
           <view class="weui-media-box__desc" style="margin-bottom: 15rpx">{{item.datetime}}</view>
+          </view>
         </view>
       </view>
     </view>
-  </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="default" plain="true" bindtap="bindClear" style="color: #ffffff; width: 50%; border: 2px solid #ffffff">清除历史记录</button>
+    </view>
+  </scroll-view>
+  
 </view>

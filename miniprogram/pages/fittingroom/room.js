@@ -8,8 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userTemp: 26,
-    tempAdvice: '感觉不错哦～',
+    userTemp: 0,
+    tempAdvice: '',
+    tempTip: '',
+    todayFit: '',
 
     tops1Name: ["", "薄卫衣", "针织毛衣", "厚卫衣", "毛衣", 
             "风衣", "棉服", "大衣", "薄款羽绒服", "厚款羽绒服"],
@@ -57,13 +59,20 @@ Page({
 
   bindConfirm: function() {
     var that = this
+    var globalData = app.globalData
     var data2send = {}
     var tops1 = that.data.tops1Index
     var tops2 = that.data.tops2Index
     var bottoms = that.data.bottomsIndex
-    data2send['tops1'] = tops1
-    data2send['tops2'] = tops2
-    data2send['bottoms'] = bottoms
+    var reqTime = util.formatTime(new Date())
+    data2send['openid'] = wx.getStorageSync('openid')
+    data2send['datetime'] = reqTime
+    data2send['tops1'] = String(tops1)
+    data2send['tops2'] = String(tops2)
+    data2send['bottoms'] = String(bottoms)
+    data2send['realtimetp'] = globalData.realtimetp
+    data2send['humidity'] = globalData.humidity
+    data2send['windspeed'] = globalData.wind_spd
     var dataStr = JSON.stringify(data2send)
     wx.request({
       // url: 'http://139.199.186.154:5678/fit',
@@ -74,19 +83,32 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        var resTime = util.formatTime(new Date())
         var outerTop = that.data.tops1[tops1].name
         var innerTop = that.data.tops2[tops2].name
         var bottom = that.data.bottoms[bottoms]
         var index = wx.getStorageSync('histCnt') + 1
         var log = {
           'id': index,
-          'choice': outerTop + '+' +  innerTop + '+' +bottom,
-          'datetime': resTime
+          'datetime': reqTime
         }
-        wx.setStorageSync(String(index), log)
-        app.globalData.histCnt = index
-        wx.setStorageSync('histCnt', index)
+        if(bottoms != 0) {
+          if(tops1 == 0 && tops2 != 0) {
+            log['choice'] = innerTop + '+' + bottom
+            wx.setStorageSync(String(index), log)
+            app.globalData.histCnt = index
+            wx.setStorageSync('histCnt', index)
+          } else if(tops1 != 0 && tops2 == 0) {
+            log['choice'] = outerTop + '+' + bottom
+            wx.setStorageSync(String(index), log)
+            app.globalData.histCnt = index
+            wx.setStorageSync('histCnt', index)
+          } else if(tops1 != 0 && tops2 != 0) {
+            log['choice'] = outerTop + '+' + innerTop + '+' + bottom
+            wx.setStorageSync(String(index), log)
+            app.globalData.histCnt = index
+            wx.setStorageSync('histCnt', index)
+          } 
+        }
         that.setData({
           userTemp: res.data["temp"],
           tempAdvice: res.data["advice"]
@@ -98,56 +120,41 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    var that = this
+    var globalData = app.globalData
+    var data2send = {}
+    var reqTime = util.formatTime(new Date())
+    data2send['openid'] = wx.getStorageSync('openid')
+    data2send['datetime'] = reqTime
+    data2send['tops1'] = '0'
+    data2send['tops2'] = '0'
+    data2send['bottoms'] = '0'
+    data2send['realtimetp'] = globalData.realtimetp
+    data2send['humidity'] = globalData.humidity
+    data2send['windspeed'] = globalData.wind_spd
+    var dataStr = JSON.stringify(data2send)
+    wx.request({
+      // url: 'http://139.199.186.154:5678/fit',
+      url: 'https://www.fukutenki.xyz/fit',
+      method: 'POST',
+      data: dataStr,
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res)
+        that.setData({
+          userTemp: res.data["temp"],
+          tempAdvice: res.data["advice"],
+          tempTip: '气温小贴士：' + app.globalData.tempTip,
+          todayFit: '今日搭配：' +  app.globalData.todayFit
+        })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShow: function() {
+    this.onLoad()
   }
 })

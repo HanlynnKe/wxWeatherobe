@@ -28,6 +28,7 @@
         <view class="weui-cell__bd">
           <view class="weui-uploader">
             <view class="weui-uploader__bd">
+            <scroll-view scroll-y="true" style="height: 300px">
               <view class="weui-uploader__files" id="uploaderFiles">
                 <block wx:for="{{images}}" wx:key="*this">
                   <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
@@ -35,6 +36,7 @@
                   </view>
                 </block>
               </view>
+            </scroll-view>
             </view>
           </view>
         </view>
